@@ -1,44 +1,27 @@
 {
   "posts": [
     {
-      "title": "post title 1",
-      "id": 1,
-      "body": "lorem ipsum"
-    },
-    {
-      "title": "post title 2",
-      "id": 2,
-      "body": "lorem ipsum"
-    },
-    {
-      "title": "post title 3",
-      "id": 3,
-      "body": "lorem ipsum"
-    },
-    {
       "title": "test",
       "body": "test",
       "tags": [
-        "html",
-        "css"
+        "webdev",
+        "vuejs"
       ],
       "id": 4
     },
     {
-      "title": "apple",
-      "body": "apple",
+      "title": "vuejs",
+      "body": "vuejs",
       "tags": [
-        "html",
-        "css"
+        "vuejs"
       ],
       "id": 5
     },
     {
-      "title": "apple",
-      "body": "apple",
+      "title": "laravel",
+      "body": "laravel",
       "tags": [
-        "html",
-        "css"
+        "laravel"
       ],
       "id": 6
     }

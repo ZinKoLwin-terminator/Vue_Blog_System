@@ -11,7 +11,7 @@
     <div v-for="tag in tags" :key="tag" class="pill">
       {{tag}}
     </div>
-    <button>add post</button>
+    <button style="cursor: pointer;">add post</button>
   </form>
 </template>
 
