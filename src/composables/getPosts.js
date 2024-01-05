@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs,orderBy ,query  } from 'firebase/firestore';
 import {db} from "../firebase/config"
 let getPosts = () => {
     let posts = ref([]);
@@ -8,14 +8,11 @@ let getPosts = () => {
     let load = async () => {
       try {
        
-        // let response = await fetch("http://localhost:3000/posts")
-        // if (response.status===404) {
-        //   throw new Error("not found url");
-        // }
-        // let datas = await (response.json());
-        // posts.value = datas;
         const postsCollection = collection(db, 'posts');
-        const querySnapshot = await getDocs(postsCollection);
+        const orderedQuery = query(postsCollection, orderBy('created_at', 'desc'));
+        const querySnapshot = await getDocs(
+          orderedQuery
+        );
        
         posts.value = querySnapshot.docs.map((doc) => {
           return {id:doc.id,...doc.data()}

@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { serverTimestamp } from 'firebase/firestore';
 
 
     const firebaseConfig = {
@@ -14,5 +15,6 @@ import { getFirestore } from 'firebase/firestore';
 
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
+let timestamp = serverTimestamp();
 
-export { db };
+export { db,timestamp };
