@@ -18,9 +18,12 @@
 <script>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router';
+import { db } from '../firebase/config';
+import { collection, addDoc } from 'firebase/firestore';
 export default {
     setup() {
-        let router = useRouter();
+    let router = useRouter();
+        
        
     let title=ref("");//title
     let body=ref("");//body
@@ -31,21 +34,22 @@ export default {
         tags.value.push(tag.value)
       }
       tag.value=""
-        }
-        let addPost=async()=>{
-        await fetch("http://localhost:3000/posts",{
-          method:"POST",
-          headers:{
-            "Content-type":"application/json"
-          },
-          body:JSON.stringify(
-            {
-              title:title.value,//""
-              body:body.value,//""
-              tags:tags.value//[]
-            }
-          )
-        })
+    }
+        
+    let addPost = async () => {
+      let newPost = ref({
+        title: title.value,//""
+        body: body.value,//""
+        tags: tags.value//[]
+      });
+      const postsCollection = collection(db, 'posts');
+      const newPostRef = await addDoc(postsCollection, newPost.value)
+      console.log('Document added with ID: ', newPostRef.id);
+      newPost.value = {
+          title: '',
+          content: ''
+        };
+       
             //redirect user  to home page
             router.push("/");
     }

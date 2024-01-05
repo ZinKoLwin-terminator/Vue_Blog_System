@@ -1,18 +1,20 @@
 const { ref } = require("vue");
-
+import { doc, getDoc } from 'firebase/firestore';
+import {db} from "../firebase/config"
 let getPost=(id)=>{
     let post=ref(null);
     let error=ref("");
 
     let load=async()=>{
         try {
-          
-            let response=await fetch("http://localhost:3000/posts/"+id);
-            if(response.status===404){
-                throw new Error("not found that exact url");
+            const postDocRef = doc(db, 'posts', id);
+            const postDocSnapshot = await getDoc(postDocRef);
+    
+            if (postDocSnapshot.exists()) {
+                post.value = { id:postDocSnapshot.id, ...postDocSnapshot.data() };
+            } else {
+              console.log('Document does not exist');
             }
-            let data=await response.json();
-            post.value=data;
         }catch(err){
             error.value=err.message;
         }

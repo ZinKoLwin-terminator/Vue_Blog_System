@@ -43,7 +43,7 @@ export default {
     padding: 10px;
   }
   .tag-cloud a {
-    color: #ccc;
+    color: #6d6464;
     text-decoration: none;
   }
   .tag-cloud a.router-link-active {
